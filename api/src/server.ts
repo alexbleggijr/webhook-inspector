@@ -8,6 +8,7 @@ import {
   validatorCompiler,
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
+import { listWebhooks } from './routes/list-webhooks'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -17,7 +18,8 @@ app.setSerializerCompiler(serializerCompiler)
 app.register(fastifyCors, {
   origin: true, // permite que qualquer endereço acesse nosso backend,
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-  // credentials: true // if we had authentication, this would allow cookies from the frontend to be sent to the backend (when on the same domain)
+  // credentials: true // if we had authentication, this would allow cookies
+  // from the frontend to be sent to the backend (when on the same domain)
 })
 
 app.register(fastifySwagger, {
@@ -34,6 +36,8 @@ app.register(fastifySwagger, {
 app.register(ScalarApiReference, {
   routePrefix: '/docs',
 })
+
+app.register(listWebhooks)
 
 // 'host' allows the app to be accessed externally (e.g., on services like Rail)
 app.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
