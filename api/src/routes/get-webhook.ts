@@ -14,7 +14,7 @@ export const getWebhook: FastifyPluginAsyncZod = async (app) => {
     {
       // route validation and documentation
       schema: {
-        summary: 'Get a specif webhook by ID',
+        summary: 'Get a specific webhook by ID',
         tags: ['Webhooks'],
         // query parameters
         params: z.object({
