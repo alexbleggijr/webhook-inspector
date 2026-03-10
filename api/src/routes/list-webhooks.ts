@@ -2,7 +2,7 @@ import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 
 // exporting a constant allows us to type the entire function.
-// If we exported only the function directly, we would only be able to type the parameters.
+// if we exported only the function directly, we would only be able to type the parameters.
 export const listWebhooks: FastifyPluginAsyncZod = async (app) => {
   app.get(
     '/api/webhooks',
