@@ -9,6 +9,7 @@ import {
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 import { env } from './env'
+import { deleteWebhook } from './routes/delete-webhook'
 import { getWebhook } from './routes/get-webhook'
 import { listWebhooks } from './routes/list-webhooks'
 
@@ -41,6 +42,7 @@ app.register(ScalarApiReference, {
 
 app.register(listWebhooks)
 app.register(getWebhook)
+app.register(deleteWebhook)
 
 // 'host' allows the app to be accessed externally (e.g., on services like Rail)
 app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
